@@ -1,0 +1,18 @@
+[
+  {"file": "emergency-numbers.md", "title": "Calling for help in Australia", "url": "https://www.triplezero.gov.au/"},
+  {"file": "bushfire.md", "title": "Bushfire", "url": "https://www.rfs.nsw.gov.au/"},
+  {"file": "flood.md", "title": "Flood and storm", "url": "https://www.ses.nsw.gov.au/"},
+  {"file": "heatwave.md", "title": "Heatwave", "url": "http://www.bom.gov.au/"},
+  {"file": "cyclone.md", "title": "Tropical cyclone", "url": "http://www.bom.gov.au/cyclone/"},
+  {"file": "snakebite.md", "title": "Snakebite", "url": "https://resus.org.au/"},
+  {"file": "spiders.md", "title": "Spiders, ticks and stings", "url": "https://resus.org.au/"},
+  {"file": "first-aid.md", "title": "First aid basics", "url": "https://resus.org.au/"},
+  {"file": "blackout.md", "title": "Power outage", "url": "https://www.yourhome.gov.au/energy"},
+  {"file": "water.md", "title": "Drinking water", "url": "https://www.nhmrc.gov.au/about-us/publications/australian-drinking-water-guidelines"},
+  {"file": "food.md", "title": "Food: keeping it, and not poisoning yourself later", "url": "https://www.foodstandards.gov.au/"},
+  {"file": "remote.md", "title": "Remote travel", "url": "https://www.triplezero.gov.au/"},
+  {"file": "hydro.md", "title": "Creek micro-hydro and pico-hydro", "url": "https://energypedia.info/wiki/Micro_Hydro_Power_(MHP)"},
+  {"file": "solar.md", "title": "Solar, batteries, inverters and backup", "url": "https://www.yourhome.gov.au/energy"},
+  {"file": "bush.md", "title": "Bush skills, and why this library will not name dinner", "url": "https://www.yourhome.gov.au/"},
+  {"file": "your-files.md", "title": "Adding your own files", "url": "https://github.com/HowMuchCanAKoalaBare/australian-survival-llm/blob/main/AUSTRALIAN_SOURCES.md"}
+]

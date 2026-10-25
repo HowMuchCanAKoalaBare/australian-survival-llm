@@ -1,0 +1,9 @@
+{
+ "version": "0.1.0",
+ "date": "2026-10-26",
+ "notes": [
+  "Australian fork. The default library no longer includes Ready.gov, CDC, MedlinePlus, US military survival manuals, USDA canning, or US micromort tables.",
+  "Ships Australian field notes (CC BY 4.0) and documents which official PDFs you add yourself.",
+  "There is no packaged Mac or Windows download yet. Run it from source."
+ ]
+}
