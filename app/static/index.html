@@ -12,6 +12,20 @@
   <div class="brand"><span class="logo" aria-hidden="true"></span>Australian Survival LLM</div>
   <div class="status" id="status">Starting…</div>
   <div class="controls">
+    <label class="home" title="The assistant uses this state's fire information line, and will not borrow another state's">
+      Home
+      <select id="home-state" aria-label="Home state">
+        <option value="">State not set</option>
+        <option value="NSW">NSW</option>
+        <option value="VIC">Victoria</option>
+        <option value="QLD">Queensland</option>
+        <option value="SA">South Australia</option>
+        <option value="WA">Western Australia</option>
+        <option value="TAS">Tasmania</option>
+        <option value="ACT">ACT</option>
+        <option value="NT">Northern Territory</option>
+      </select>
+    </label>
     <button id="model-btn" class="ghost model-btn" type="button" title="Choose which AI model answers">
       Model: <strong id="model-name">none yet</strong> <span aria-hidden="true">▾</span>
     </button>
@@ -91,7 +105,8 @@
     <button id="close-prompt" class="ghost icon" type="button" aria-label="Close">✕</button>
   </div>
   <p class="meta">Australian Survival LLM gives the AI these instructions at the start of every conversation. Change them to change
-    how it answers. Your version applies to every model, from your next question; Reset brings back the original.</p>
+    how it answers. Your version applies to every model, from your next question; Reset brings back the original.
+    The home state in the header is added after this text, and it changes when you change the state.</p>
   <textarea id="prompt-text" class="prompt-text" spellcheck="false" aria-label="AI instructions"></textarea>
   <div class="prompt-actions">
     <span id="prompt-status" class="meta" aria-live="polite"></span>

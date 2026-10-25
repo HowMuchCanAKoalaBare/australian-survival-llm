@@ -34,3 +34,7 @@ Decide the load before the outage: fridge, a light, phone charging, a medical de
 ## Phones
 
 Low screen brightness, no video, and a voice call uses less than a hotspot. Save the last of the battery for 000. A charged power bank lives in the grab-bag, filled before the bad day, not during it.
+
+## What the solar will not do
+
+If the solar is an ordinary grid-tied system, it has already shut down with the street. A battery only carries the house if backup was installed. See the note on rooftop solar in a blackout. The toilet, if the sewer has backed up, is a separate problem: stop flushing and see the sanitation note.

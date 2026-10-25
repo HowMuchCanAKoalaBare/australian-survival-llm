@@ -13,7 +13,17 @@ Call **000** for police, fire or ambulance. Say which service you need, then the
 
 **1800 022 222** is Healthdirect, a nurse line when you are not sure the problem is an emergency. It is not for a house fire, chest pain, severe bleeding, or a snakebite.
 
-NSW Rural Fire Service bush fire information line: **1800 679 737**. Other states publish their own fire information lines. Do not invent one. During a fire, follow the warning on the state fire service app or the radio, not a number you half remember.
+NSW Rural Fire Service bush fire information line: **1800 679 737**. That number is New South Wales only.
+
+Other information lines, checked against the agency's own pages. These are not rescue numbers. Reporting a fire is still 000. None of them should be guessed into a different state:
+
+- Victoria: VicEmergency Hotline **1800 226 226**. Information, including during major fires. It is not staffed around the clock outside those incidents. The VicEmergency app and ABC Local carry the warnings.
+- South Australia: CFS Information Hotline **1800 362 361**.
+- Western Australia: DFES information line **13 3337**.
+- Tasmania: Tasmania Fire Service Information Line **1800 000 699**.
+- Queensland, the ACT and the Northern Territory: this library does not carry a fire-information phone number for them. Use that agency's site and ABC Local. Do not borrow a number from the list above.
+
+**132 500** stays the SES number for storm and flood. If a state page ever publishes a different storm number, the page wins.
 
 ## What to say
 

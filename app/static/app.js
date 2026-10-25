@@ -133,6 +133,8 @@ async function loadStatus() {
   renderStatus();
   showModel();
   renderSetup();
+  const homeSelect = $("home-state");
+  if (homeSelect && document.activeElement !== homeSelect) homeSelect.value = state.home || "";
   if (els.dialog.open) renderModels();
   els.libraryBtn.hidden = !state.library && !state.my_files?.ready;
   renderVersion();
@@ -866,6 +868,16 @@ $("close-updates").onclick = () => updatesDialog.close();
 updatesDialog.onclick = (e) => { if (e.target === updatesDialog) updatesDialog.close(); };
 $("banner-update").onclick = () => openUpdates(false);
 $("banner-dismiss").onclick = () => { remember("update-dismissed", state?.update?.app || ""); $("update-banner").hidden = true; };
+
+$("home-state").onchange = async () => {
+  const code = $("home-state").value;
+  try {
+    state = { ...state, home: code };
+    await api("/api/home", { method: "POST", body: JSON.stringify({ state: code }) });
+  } catch {
+    setStatus("warn", "Couldn't save the home state.");
+  }
+};
 
 // ---------- the AI's instructions, viewable and editable ----------
 let promptDefault = "";

@@ -17,6 +17,8 @@ Mark the bite site on the bandage with a pen if you can do it without delay. Do 
 
 This is not the treatment for a redback spider. Pressure immobilisation is for snakebite and for funnel-web spider bite, not for redbacks. See the spiders note.
 
+This is not the treatment for a bluebottle, a jellyfish, a stonefish or a stingray. A pressure bandage on those stings is the wrong move. See the sea-stings note. A sea snake is the exception in the water: treat it as a land snake.
+
 This is not US rattlesnake advice. Do not follow a US article that says to keep the bite below the heart and skip the pressure bandage. If a library article disagrees with this note on Australian snakes, follow this note and the ANZCOR page in Your files.
 
 ## On the way

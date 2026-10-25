@@ -17,7 +17,7 @@ Navigation: a map, a compass you have used before the trip, and the habit of loo
 
 Signalling: a mirror, a whistle, a bright panel, a torch at night. Three signals of anything, repeated, is the old distress pattern. A beacon is better. See the remote-travel note. Do not light a signal fire on a total fire ban or in long grass.
 
-Shelter: get out of the wind and the sun first. In much of Australia the emergency is heat and dehydration, not a snow cave. Shade, water, and staying found beat a stylish humpy. At night in the high country, wool and a groundsheet matter, and wet cotton does not insulate. Change out of wet clothes if you have dry ones. See the first-aid note if someone is confused and shivering. That is 000 country if you can call, and a warming problem if you cannot.
+Shelter: get out of the wind and the sun first. In much of Australia the emergency is heat and dehydration, not a snow cave. Shade, water, and staying found beat a stylish humpy. At night in the high country, wool and a groundsheet matter, and wet cotton does not insulate. Change out of wet clothes if you have dry ones. See the cold note if someone is confused and shivering, and the first-aid note. That is 000 country if you can call.
 
 Water: see the drinking-water note. Do not drink from a pretty creek without treating it.
 

@@ -54,11 +54,15 @@ There is no safe, openly licensed Australian bush-tucker manual that this projec
 | Material | Licence, as checked | How |
 |---|---|---|
 | YourHome renewable energy, batteries, photovoltaic systems | CC BY 4.0, Commonwealth of Australia (DCCEEW). https://www.yourhome.gov.au/copyright | `python3 library/fetch_au.py`. If the site blocks the download, print or save the HTML into Your files. |
+| Geoscience Australia earthquake pages (drop, cover, hold) | CC BY 4.0, Commonwealth of Australia (Geoscience Australia). https://www.ga.gov.au/copyright checked 2026-10-26. Excludes the Coat of Arms, the logo, third-party content, and any page with its own copyright line | `python3 library/fetch_au.py`. The field note is original text and does not copy the page. |
 | Energypedia and Appropedia small-hydro and solar articles | CC BY-SA | Kiwix, via `library/fetch_zims.py` |
 | Pico Hydro for Village Power, Maher & Smith, 2001, picohydro.org.uk | No reproduction licence found in the chapters | `fetch_manuals.py --personal` or Your files. Not in the base library. |
 | NRCan Micro-Hydropower Systems: A Buyer's Guide (2004) | Crown copyright. Read the notice inside the PDF before any sharing | `--personal` or Your files. The fetch URL may change; if it fails, take the PDF from Natural Resources Canada yourself. |
 | NCAT/ATTRA Micro-Hydro Power: A Beginners Guide to Design and Installation | © NCAT. https://attra.ncat.org/publication/micro-hydro-power-a-beginners-guide-to-design-and-installation/ | `--personal` or Your files. |
-| Practical Action micro-hydro technical briefs | Confirm the licence on the PDF you download. Do not assume CC BY-SA | If the file is CC BY or CC BY-SA, add it under `manuals/open`. If not, Your files. |
+| Practical Action micro-hydro technical briefs | Not confirmed as CC BY or CC BY-SA for the set. Do not assume a share licence | If the file you downloaded says CC BY or CC BY-SA on it, add it under `manuals/open`. If not, Your files. |
+| Bureau of Meteorology warning pages | Commonwealth copyright. Not cleared here as CC BY. The field notes tell you to follow a warning. They do not copy the Bureau's pages | Your files, if you save a page for yourself. |
+| State health fact sheets (smoke, mosquitoes, sanitation) | Not CC BY as a class. A single page can be fetched later only when that page's footer says CC BY | Your files. |
+| St John first-aid sheets and Clean Energy Council battery guides | Copyright. Free to read, useful, not redistributed | Your files. |
 | Generator and inverter manuals for the machine you own | The manufacturer's copyright | Your files. The field notes cover carbon monoxide, backfeed, and load priority only. |
 
 ## Numbers the field notes use
@@ -69,7 +73,13 @@ These are public service numbers, not a document we republish:
 - **132 500** — SES storm and flood.
 - **13 11 26** — Poisons Information Centre.
 - **1800 022 222** — Healthdirect.
-- **1800 679 737** — NSW RFS bush fire information. Other states publish their own. Do not guess them.
+- **1800 679 737** — NSW RFS bush fire information only.
+- **1800 226 226** — Victoria, VicEmergency information hotline. Not staffed around the clock outside major incidents.
+- **1800 362 361** — South Australia, CFS Information Hotline.
+- **13 3337** — Western Australia, DFES information.
+- **1800 000 699** — Tasmania Fire Service Information Line.
+- Queensland, the ACT and the Northern Territory: no fire-information number is stored. Do not invent one.
+- **1800 278 462** — Asthma Australia. Information, not an ambulance.
 
 ## Rebuild, short version
 

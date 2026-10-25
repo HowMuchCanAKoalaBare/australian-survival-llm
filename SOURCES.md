@@ -20,8 +20,8 @@ Manuals whose licence does not allow redistribution (pico-hydro PDFs, NCAT, and 
 
 | Source | What it covers | Licence | Where it comes from |
 |---|---|---|---|
-| Australian field notes | Triple Zero, bushfire, flood, cyclone, heat, snakebite, spiders, first aid, blackout, water, food, remote travel, micro-hydro, solar | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), this project. Not an official publication | `library/seed/` |
-| YourHome and FSANZ pages, when `fetch_au.py` actually receives article text | Household solar, batteries, food safety | CC BY 4.0. YourHome: Commonwealth of Australia (DCCEEW). FSANZ: Food Standards Australia New Zealand. No endorsement is implied | `library/fetch_au.py` |
+| Australian field notes | Triple Zero and state fire lines, bushfire and smoke, flood, fallen trees, cyclone, heat, earthquake and tsunami, snakebite, marine stings, asthma, mosquitoes, first aid, cold, blackout, grid-tied solar, water, food, sanitation, a paper family plan, remote travel, radio and beacons, micro-hydro, solar | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), this project. Not an official publication | `library/seed/` |
+| YourHome, FSANZ and Geoscience Australia pages, when `fetch_au.py` actually receives article text | Household solar, batteries, food safety, drop-cover-hold | CC BY 4.0. YourHome: Commonwealth of Australia (DCCEEW). FSANZ: Food Standards Australia New Zealand. Geoscience Australia: Commonwealth of Australia. No endorsement is implied. Coat of arms, logos and third-party material are excluded | `library/fetch_au.py` |
 | Wikipedia, most-read articles | General knowledge, including Australian topics | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), Wikipedia contributors | Kiwix `wikipedia_en_top1m` (not in `--lite`) |
 | WikiMed | Medical encyclopedia drawn from Wikipedia | CC BY-SA 4.0, Wikipedia contributors | Kiwix `wikipedia_en_medicine` |
 | WikEM | Emergency medicine | CC BY-SA 4.0, WikEM contributors. US-leaning in places; Australian field notes outrank it on snakes, spiders and local numbers | Kiwix `wikem_en_all` |

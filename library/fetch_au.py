@@ -8,6 +8,9 @@ save the page yourself (Print to PDF, or the site's own PDF) and put it in Your 
 Checked 2026-10-26:
 - YourHome (yourhome.gov.au) is CC BY 4.0, Commonwealth of Australia (DCCEEW).
 - FSANZ website material is CC BY 4.0 Australia, except the logo and third-party material.
+- Geoscience Australia website material is CC BY 4.0, except the Commonwealth Coat of Arms, the logo,
+  third-party content, and any page that carries its own copyright statement.
+  https://www.ga.gov.au/copyright checked 2026-10-26.
 """
 import json
 import os
@@ -34,6 +37,12 @@ PAGES = [
     ("fsanz-consumer.html", "FSANZ: Consumer information",
      "https://www.foodstandards.gov.au/consumer",
      "CC BY 4.0 Australia, Food Standards Australia New Zealand. Not an endorsement."),
+    ("ga-earthquake.html", "Geoscience Australia: what to do in an earthquake",
+     "https://www.ga.gov.au/about/earth-science-week/the-great-shakeout",
+     "CC BY 4.0, Commonwealth of Australia (Geoscience Australia). Not an endorsement."),
+    ("ga-earthquake-advice.html", "Geoscience Australia: earthquake advice for the public",
+     "https://www.ga.gov.au/news/earthquake-information-for-media-outlets",
+     "CC BY 4.0, Commonwealth of Australia (Geoscience Australia). Not an endorsement."),
 ]
 
 

@@ -66,6 +66,8 @@ button, select, input, textarea { font: inherit; color: inherit; }
 .status .dot.warn { background: #d48a00; }
 .status a { color: inherit; }
 .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.home { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--muted); }
+.home select { min-height: 36px; }
 select, .ghost {
   border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 6px 10px; cursor: pointer;
 }

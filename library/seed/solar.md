@@ -3,6 +3,8 @@
 **Licence:** CC BY 4.0, Australian Survival LLM field notes. Not a wiring guide.
 **Confirm with:** YourHome, which is CC BY 4.0, https://www.yourhome.gov.au/energy — especially the pages on photovoltaic systems and batteries. Save them with library/fetch_au.py or into Your files. Installation is for an accredited installer. Grid connection has network rules.
 
+A normal grid-tied array, including microinverters, makes no power for the house when the street is dead. Read the blackout-solar note before you plan the fridge around the panels. The rest of this page is about sizing a system that is actually able to run.
+
 ## What a small system is for
 
 Write the loads in watts and the hours you need them. A 10 watt light for five hours is 50 watt-hours. A phone charger is small. A fridge might be 1 to 2 kilowatt-hours a day depending on the box, the room and how often the door opens. An electric kettle is 2000 watts for a few minutes and will humble a small inverter and a small battery. Survival power is lights, communications, a medical device, and maybe the fridge. It is not the clothes dryer.

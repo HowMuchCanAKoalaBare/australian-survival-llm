@@ -7,7 +7,7 @@
 
 Store water for drinking and cooking while the tap works. A commonly used household figure is about three litres a person a day for drinking in mild weather, and more in an Australian heatwave. Washing and flushing are extra and can be a lower grade of water. Rotate stored water. Label the date. Keep it out of the sun, in food-grade containers, not in old chemical drums.
 
-A rainwater tank is not automatically safe. Screens stop mosquitoes and animals. A first-flush diverter keeps the dirtiest roof water out. After a bushfire, a dead animal, or a chemical spray drift event, do not drink the tank until you know what fell on the roof. Ash and firefighting chemicals are not removed by boiling.
+A rainwater tank is not automatically safe. Screens stop mosquitoes and animals. A first-flush diverter keeps the dirtiest roof water out. After a bushfire, a dead animal, or a chemical spray drift event, do not drink the tank until you know what fell on the roof. Ash and firefighting chemicals are not removed by boiling. An unscreened tank is also a mosquito problem. See the mosquito note.
 
 ## Making water safer
 

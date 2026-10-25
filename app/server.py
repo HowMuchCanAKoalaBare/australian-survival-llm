@@ -35,7 +35,7 @@ from urllib.parse import parse_qs, urlparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-from core import HOST, capabilities, chat_events, installed_models, system_prompt, trim  # noqa: E402
+from core import HOST, capabilities, chat_events, home_clause, home_state, installed_models, system_prompt, trim  # noqa: E402
 from library import myfiles  # noqa: E402
 from library.search import DB_PATH, LIB, TOPICS, Library  # noqa: E402
 
@@ -98,6 +98,7 @@ else:
     APP_DIR = os.path.join(os.path.expanduser("~"), ".survival-llm")
 STATE = os.path.join(APP_DIR, "server.json")
 CUSTOM_PROMPT = os.path.join(APP_DIR, "instructions.txt")  # the person's own edit of the AI's instructions
+HOME_STATE = os.path.join(APP_DIR, "home-state.txt")  # NSW, VIC, ... so the prompt does not borrow another state's fire line
 # The person's own files: a folder they can see, beside the library folder rather than in it (installing a library
 # pack replaces that folder), and its index, kept with the settings.
 MY_DIR = os.environ.get("SURVIVAL_LLM_FILES") or os.path.join(os.path.expanduser("~"), "Australian Survival LLM Files")
@@ -1054,7 +1055,8 @@ class Handler(BaseHTTPRequestHandler):
             doc = library().document(int(query.get("id", 0))) if library() else None
             return self._send(200 if doc else 404, doc or {"error": "not found"})
         if url.path == "/api/prompt":
-            return self._send(200, {"default": system_prompt(library(), True), "custom": custom_prompt()})
+            return self._send(200, {"default": system_prompt(library(), True, include_home=False),
+                                    "custom": custom_prompt(), "home": home_state()})
         if url.path == "/api/myfiles":  # their files, and whether any are being read (?check=1: look for changes)
             if query.get("check"):
                 check_my_files()
@@ -1101,6 +1103,7 @@ class Handler(BaseHTTPRequestHandler):
             "version": VERSION,
             "update": {"app": (newer_app() or {}).get("version"), "library": bool(newer_library())},
             "machine": {"os": "macOS" if sys.platform == "darwin" else platform.system(), "ram_gb": ram_gb()},
+            "home": home_state(),
             "topics": TOPICS}
 
     def do_POST(self):
@@ -1125,6 +1128,20 @@ class Handler(BaseHTTPRequestHandler):
                 if conv.get("messages"):
                     conv["messages"][0]["content"] = prompt_for(model_caps(conv["model"]))
             return self._send(200, {"ok": True, "custom": custom_prompt()})
+        if url.path == "/api/home":
+            code = str(body.get("state") or "").strip().upper()
+            if code and code not in ("NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT"):
+                return self._send(400, {"error": "unknown state"})
+            os.makedirs(APP_DIR, exist_ok=True)
+            if code:
+                with open(HOME_STATE, "w", encoding="utf-8") as f:
+                    f.write(code + "\n")
+            elif os.path.exists(HOME_STATE):
+                os.remove(HOME_STATE)
+            for conv in conversations.values():
+                if conv.get("messages") and conv.get("model"):
+                    conv["messages"][0]["content"] = prompt_for(model_caps(conv["model"]))
+            return self._send(200, {"ok": True, "home": home_state()})
         if url.path == "/api/myfiles/remove":
             path = my_file_path(body.get("name", ""))
             if not path:
@@ -1294,8 +1311,11 @@ def custom_prompt():
 
 
 def prompt_for(caps):
-    """The instructions a conversation starts with: the person's edited version, or the default for this model."""
-    return custom_prompt() or system_prompt(library(), "tools" in caps)
+    """The instructions a conversation starts with: the person's edited version, or the default for this model.
+    The home state is always added after that, so changing the state updates the next question."""
+    custom = custom_prompt()
+    base = custom if custom else system_prompt(library(), "tools" in caps, include_home=False)
+    return base.rstrip() + "\n\n" + home_clause(home_state())
 
 
 def open_window(url):

@@ -7,6 +7,7 @@ Talks only to the local Ollama server, so it works with Wi-Fi off.
 import json
 import os
 import re
+import sys
 import urllib.error
 import urllib.request
 
@@ -31,16 +32,83 @@ How to answer:
 - {search_rule}
 - Lead with the direct answer, then short numbered steps when steps help.
 - Put safety first. Name real dangers (carbon monoxide, bushfire, floodwater, heatstroke, spoiled food, unsafe water, snakebite, electrical hazards) and say plainly when to call Triple Zero (000). From a mobile that cannot reach the network, 112 may still connect to emergency services. Do not tell anyone to call 911. Storm and flood help from the SES is 132 500. The Poisons Information Centre is 13 11 26, all hours, anywhere in Australia.
-- Australian snakebite and funnel-web spider bite: keep the person still, apply a broad pressure immobilisation bandage to the whole limb (firm, as for a sprain, not a tourniquet that stops blood flow), splint the limb, and get them to hospital. Do not wash, cut or suck the bite, and do not try to catch the snake. A redback spider bite is different: do not use a pressure bandage. If the library's Australian notes and a US or European article disagree on snakes or spiders, follow the Australian notes.
-- Bushfire: leaving early is the safest plan. Do not tell someone to stay and defend unless they already have a practised plan and current official advice is not telling them to leave. Do not invent a fire danger rating, a road closure or a warning they have not been given.
+- Australian snakebite and funnel-web spider bite: keep the person still, apply a broad pressure immobilisation bandage to the whole limb (firm, as for a sprain, not a tourniquet that stops blood flow), splint the limb, and get them to hospital. Do not wash, cut or suck the bite, and do not try to catch the snake. A redback spider bite is different: do not use a pressure bandage. A bluebottle, jellyfish, stonefish or stingray is also different: do not use a pressure bandage. Vinegar is for a possible box jellyfish or Irukandji, not for a bluebottle. Hot water at about 45°C is for bluebottle, stonefish and stingray pain, not for a box jellyfish. If the library's Australian notes and a US or European article disagree on snakes, spiders or marine stings, follow the Australian notes.
+- Bushfire: leaving early is the safest plan. Do not tell someone to stay and defend unless they already have a practised plan and current official advice is not telling them to leave. Do not invent a fire danger rating, a road closure or a warning they have not been given. Bushfire smoke is not the same decision as a fire at the fence: indoors, recirculate, P2 or N95 if it fits, and 000 if breathing fails.
+- A normal grid-connected rooftop solar system, including microinverters, produces nothing for the house when the grid is down. Do not say the panels will run the fridge unless the person's own paperwork in "Your files" says backup was installed. The panels can still be live in daylight. Do not tell anyone to cut them.
+- Do not name an Australian plant, fungus or berry as safe to eat. Refuse, and point at the bush-skills note.
+- Do not give a bleach dose for drinking water. Boiling is the method in the field notes. A dose comes only from a state health sheet the person has in "Your files".
 - Carbon monoxide kills people in every blackout. Never suggest running a generator, car, grill or camp stove indoors or in a garage, even with the door or windows open, and never heating with a gas oven or stove. Heaters must be made for indoor use, with a working CO alarm. Give no "if you must" exceptions to these. A generator must not backfeed a switchboard; that needs a proper changeover switch fitted by a licensed electrician.
 - Heatstroke is a Triple Zero emergency: hot, confused, possibly no longer sweating. Cool the person fast while help is coming. Never leave a child, an older person or an animal in a parked car.
 - Always answer. When asked for a number nobody has measured, estimate it anyway: reason it out, give a number or a range, and say how confident you are. Missing data is never a reason to withhold a rough estimate of a physical quantity such as power from a creek or how long a fridge stays cold. Never invent a phone number, a medicine dose, a bleach dose, or a canning time. If you do not have it from the library, say so and describe what the person should check.
 - When sources disagree, trust Australian field notes and any Australian government, ANZCOR or state emergency-service pages in "Your files" over WikEM and WikiMed, and trust those over wikiHow and Q&A sites. The UK medicines guide is not TGA or PBS advice; say that if you use it. US military, FEMA, CDC and USDA pages are not in this library on purpose.
-- Creek micro-hydro and rooftop solar are orientation only. Mention water licensing, fish passage, and that mains-connected electrical work is for a licensed electrician. Rooftop solar can stay electrically live in daylight after the grid fails; do not tell anyone to cut panels.
+- Creek micro-hydro and rooftop solar are orientation only. Mention water licensing, fish passage, and that mains-connected electrical work is for a licensed electrician. Rooftop solar can stay electrically live in daylight after the grid fails; do not tell anyone to cut panels. A grid-tied inverter that has lost the grid has stopped feeding the house.
 - When you can't back an answer with the library, answer anyway from what you know, as long as you say so plainly ("From memory:" or "I'm guessing here:"). Never pass off a guess as fact, especially phone numbers, medicine doses, local rules and current conditions.
 - Use Australian English. Don't add disclaimers like "I'm not a doctor"; the app already says AI can make mistakes. Do say when someone needs emergency help now.{sources_rule}
 - Keep answers short to save battery unless asked for more detail."""
+
+# Fire-information lines checked against the agency's own pages on 2026-10-26.
+# Queensland, the ACT and the Northern Territory are absent on purpose: no number was confirmed.
+HOME_STATES = {
+    "NSW": ("New South Wales", "1800 679 737",
+            "NSW Rural Fire Service bush fire information line"),
+    "VIC": ("Victoria", "1800 226 226",
+            "VicEmergency Hotline. It is information, not a rescue service, and it is not staffed around the clock "
+            "outside major incidents. Warnings also go out on the VicEmergency app and ABC Local"),
+    "SA": ("South Australia", "1800 362 361", "CFS Information Hotline"),
+    "WA": ("Western Australia", "13 3337", "DFES information line, 13 DFES"),
+    "TAS": ("Tasmania", "1800 000 699", "Tasmania Fire Service Information Line"),
+}
+HOME_NO_LINE = {
+    "QLD": "Queensland",
+    "ACT": "the Australian Capital Territory",
+    "NT": "the Northern Territory",
+}
+
+
+def settings_dir():
+    """Same folder the app uses for instructions and the home state."""
+    if sys.platform == "darwin":
+        return os.path.join(os.path.expanduser("~"), "Library", "Application Support", "Australian Survival LLM")
+    if os.name == "nt":
+        return os.path.join(os.environ.get("APPDATA", os.path.expanduser("~")), "Australian Survival LLM")
+    return os.path.join(os.path.expanduser("~"), ".survival-llm")
+
+
+def home_state():
+    """Saved two-letter code, or '' when the person has not chosen a state."""
+    try:
+        code = open(os.path.join(settings_dir(), "home-state.txt"), encoding="utf-8").read().strip().upper()
+    except OSError:
+        return ""
+    return code if code in HOME_STATES or code in HOME_NO_LINE else ""
+
+
+def home_clause(code):
+    """Instructions appended to every conversation so a Perth question is not answered with a NSW number."""
+    code = (code or "").upper()
+    if code in HOME_STATES:
+        name, number, what = HOME_STATES[code]
+        return (
+            f"Home state setting: {name}. Unless the person says they are somewhere else, the bushfire information "
+            f"line to give them is {number} ({what}). Do not substitute another state's number. "
+            "Storm and flood help is still 132 500. A life-threatening emergency is still 000."
+        )
+    if code in HOME_NO_LINE:
+        return (
+            f"Home state setting: {HOME_NO_LINE[code]}. This library has no fire-information phone number for "
+            "that state or territory. Tell them to use the local fire agency's website and ABC Local radio. "
+            "Report a fire on 000. Do not borrow New South Wales 1800 679 737, Victoria 1800 226 226, "
+            "South Australia 1800 362 361, Western Australia 13 3337, or Tasmania 1800 000 699. "
+            "Storm and flood help is still 132 500."
+        )
+    return (
+        "Home state setting: none. Do not assume a state. Give a bushfire information number only when the person "
+        "names the state and the Australian field notes list one: NSW 1800 679 737, Victoria 1800 226 226, "
+        "South Australia 1800 362 361, Western Australia 13 3337, Tasmania 1800 000 699. "
+        "Queensland, the ACT and the Northern Territory have no fire-information number in this library. "
+        "Do not invent one. 000, 112 and 132 500 are national."
+    )
+
 
 TOOLS = [
     {"type": "function", "function": {
@@ -116,15 +184,17 @@ def think_setting(model, caps, deep=False):
     return (THINK_DEEP.get(fam, True) if deep else THINK_DEFAULT.get(fam, False))
 
 
-def system_prompt(library, tools=True):
-    """library: a Library (its sources get listed for the model) or None."""
+def system_prompt(library, tools=True, home=None, include_home=True):
+    """library: a Library (its sources get listed for the model) or None.
+    home: a state code, '' for none, or None to read the saved choice. include_home=False leaves the
+    clause off so the editable instructions stay separate from the setting."""
     has_library = library is not None
     if has_library and tools:
         labels = ", ".join(library.labels()) if hasattr(library, "labels") else "reference articles"
         personal = (' Results from "Your files" are documents the person added themselves, such as manuals for their '
                     "own equipment, their medicines or their plans; when one is relevant, it beats general advice."
                     if getattr(library, "has_personal", False) else "")
-        return BASE_PROMPT + LIBRARY_PROMPT.format(labels=labels, personal=personal) + RULES.format(
+        text = BASE_PROMPT + LIBRARY_PROMPT.format(labels=labels, personal=personal) + RULES.format(
             search_rule="Before answering any factual, medical, safety or how-to question, search the library, even "
                         "if you think you know the answer, so the person can check where it came from. Try a second "
                         "wording if the first misses, read the most relevant result, and base your answer on it. If "
@@ -135,14 +205,19 @@ def system_prompt(library, tools=True):
             sources_rule='\n- End with one short line, "Sources:", naming the articles you used. The app also shows the '
                          "person every article you opened, so name only articles you actually read, and never make one "
                          'up. If you answered from memory, write "Sources: none (from memory)".')
-    if has_library:
-        return BASE_PROMPT + RULES.format(
+    elif has_library:
+        text = BASE_PROMPT + RULES.format(
             search_rule="Library excerpts may be attached to the question; base your answer on them when relevant.",
             sources_rule='\n- End with one short line, "Sources:", naming the excerpts you used, or "Sources: none (from '
                          'memory)" if none of them helped. The person sees the excerpts too, so never name anything else.')
-    return BASE_PROMPT + RULES.format(
-        search_rule="Answer from what you know; you cannot look anything up.",
-        sources_rule="\n- Do not cite sources you cannot check.")
+    else:
+        text = BASE_PROMPT + RULES.format(
+            search_rule="Answer from what you know; you cannot look anything up.",
+            sources_rule="\n- Do not cite sources you cannot check.")
+    if include_home:
+        code = home_state() if home is None else home
+        text += "\n\n" + home_clause(code)
+    return text
 
 
 def run_tool(library, name, args):
